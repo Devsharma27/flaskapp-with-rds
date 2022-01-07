@@ -4,7 +4,7 @@ import mysql.connector
 import logging
 
 app = Flask(__name__)
-logging.basicConfig(filename='flask.log', level=logging.INFO,format='%(levelname)s:%(message)s')
+logging.basicConfig(filename='dev.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
 app.config['MYSQL_HOST'] = 'aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'dev'
