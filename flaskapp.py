@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'dev'
 app.config['MYSQL_PASSWORD'] = '12345678'
-app.config['MYSQL_DB'] ='newregform'
+app.config['MYSQL_DB'] ='regform'
 
 mydb = mysql.connector.connect(
   host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
@@ -18,14 +18,14 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE DATABASE newregform")
+mycursor.execute("CREATE DATABASE regform")
 
 
 mydb = mysql.connector.connect(
   host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
   user="dev",
   password="12345678",
-  database="newregform"
+  database="regform"
 )
 
 mycursor = mydb.cursor()
