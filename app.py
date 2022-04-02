@@ -6,13 +6,13 @@ import logging
 app = Flask(__name__)
 logging.basicConfig(filename='dev.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
-app.config['MYSQL_HOST'] = 'terraform-20220402065840160000000006.caomyyms75ok.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_HOST'] = 'aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'dev'
 app.config['MYSQL_PASSWORD'] = '12345678'
 app.config['MYSQL_DB'] ='regform'
 
 mydb = mysql.connector.connect(
-  host="terraform-20220402065840160000000006.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
   user="dev",
   password="12345678"
 )
@@ -23,7 +23,7 @@ mycursor.execute("CREATE DATABASE regform")
 
 
 mydb = mysql.connector.connect(
-  host="terraform-20220402065840160000000006.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
   user="dev",
   password="12345678",
   database="regform"
