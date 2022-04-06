@@ -46,7 +46,7 @@ def index():
         email = details['email']
         mobile = details['mobile']
         location = details['location']
-        logging.info(name,age,email,mobile,location)
+        logging.info(name)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO userdata(name, age, email, mobile, location) VALUES (%s, %s, %s, %s, %s)", (name, age, email, mobile, location))
         mysql.connection.commit()
