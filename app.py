@@ -46,6 +46,7 @@ def index():
         email = details['email']
         mobile = details['mobile']
         location = details['location']
+        logging.info(name,age,email,mobile,location)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO userdata(name, age, email, mobile, location) VALUES (%s, %s, %s, %s, %s)", (name, age, email, mobile, location))
         mysql.connection.commit()
@@ -64,4 +65,4 @@ def users():
         return render_template('users.html',usersDetails=usersDetails)
 
 if __name__ == '__main__':
-  app.run(host="0.0.0.0",port=80)
+  app.run(host="0.0.0.0",port=80, debug="true")
