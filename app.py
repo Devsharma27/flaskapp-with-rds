@@ -4,26 +4,26 @@ import mysql.connector
 import logging
 
 app = Flask(__name__)
-logging.basicConfig(filename='dev.log', level=logging.INFO,format='%(levelname)s:%(message)s')
+logging.basicConfig(filename='flask.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
-app.config['MYSQL_HOST'] = 'aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_HOST'] = 'database-1.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'dev'
 app.config['MYSQL_PASSWORD'] = '12345678'
 app.config['MYSQL_DB'] ='regform'
 
 mydb = mysql.connector.connect(
-  host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  host="database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
   user="dev",
   password="12345678"
 )
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE DATABASE regform")
+mycursor.execute("CREATE DATABASE IF NOT EXISTS regform")
 
 
 mydb = mysql.connector.connect(
-  host="aws-d-database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  host="database-1.caomyyms75ok.us-east-1.rds.amazonaws.com",
   user="dev",
   password="12345678",
   database="regform"
@@ -31,7 +31,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE userdata(name VARCHAR(150), age INT(3), email VARCHAR(150), mobile VARCHAR(10), location VARCHAR(100));")
+mycursor.execute("CREATE TABLE IF NOT EXISTS userdata(name VARCHAR(150), age INT(3), email VARCHAR(150), mobile VARCHAR(10), location VARCHAR(100));")
 
 
 mysql = MySQL(app)
@@ -42,11 +42,11 @@ def index():
     if request.method == "POST":
         details = request.form
         name = details['name']
+        logging.info(name)
         age = details['age']
         email = details['email']
         mobile = details['mobile']
         location = details['location']
-        logging.info(name)
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO userdata(name, age, email, mobile, location) VALUES (%s, %s, %s, %s, %s)", (name, age, email, mobile, location))
         mysql.connection.commit()
